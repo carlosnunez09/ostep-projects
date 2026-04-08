@@ -33,8 +33,7 @@
       gethostname_or_die(hostname, MAXBUF);
 
       /* Form and send the HTTP request */
-      sprintf(buf, "GET %s HTTP/1.1\n", filename);
-      sprintf(buf, "%shost: %s\n\r\n", buf, hostname);
+      snprintf(buf, MAXBUF, "GET %s HTTP/1.1\nhost: %s\n\r\n", filename, hostname);
       write_or_die(fd, buf, strlen(buf));
   }
 
