@@ -41,23 +41,16 @@ void client_send(int fd, char *filename) {
 //
 // Read the HTTP response and print it out
 //
-void client_print(int fd) {
-    char buf[MAXBUF];  
-    int n;
-    
-    // Read and display the HTTP Header 
-      // Read and display the HTTP Body 
-    n = read_or_die(fd, buf, MAXBUF);
-    while (n > 0) {
-	printf("%s", buf);
-	n = read_or_die(fd, buf, MAXBUF);
-    }
-	// If you want to look for certain HTTP tags... 
-	// int length = 0;
-	//if (sscanf(buf, "Content-Length: %d ", &length) == 1) {
-	//    printf("Length = %d\n", length);
-	//}
-    }
+ void client_print(int fd) {
+      char buf[MAXBUF];
+      int n;
+
+      n = read_or_die(fd, buf, MAXBUF);
+      while (n > 0) {
+          printf("%s", buf);
+          n = read_or_die(fd, buf, MAXBUF);
+      }
+  }
     
     // Read and display the HTTP Body 
     n = readline_or_die(fd, buf, MAXBUF);
